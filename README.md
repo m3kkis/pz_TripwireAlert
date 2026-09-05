@@ -31,7 +31,7 @@ After the wire snaps: Repair with 1 Wire, or spend 1 Wire to pick up the kit. Ar
 
 ### Notes:
 
-Build 42.20+ Works in singleplayer, multiplayer is not tested yet but should.
+Build 42.20+ Works in singleplayer, multiplayer is not tested yet but should work
 
 Workshop ID: 3795603594
 Mod ID: TripwireAlert

@@ -17,6 +17,6 @@ description=
 description=WARNING: You get a grace period before you can trigger the trip wire. If you want to pass without breaking the line you need to crouch/stealth.
 description=
 description=Notes:
-description=Build 42.20+ Works in singleplayer, multiplayer is not tested yet but should.
+description=Build 42.20+ Works in singleplayer, multiplayer is not tested yet but should work
 tags=Build 42;Audio;Items;Multiplayer
 visibility=private

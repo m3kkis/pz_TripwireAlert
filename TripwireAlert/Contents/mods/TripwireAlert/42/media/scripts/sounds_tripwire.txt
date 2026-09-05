@@ -1,0 +1,12 @@
+module TripwireAlert
+{
+    sound TripwireBell
+    {
+        category = Item,
+        clip
+        {
+            file = media/sound/TripwireBell.ogg,
+            distanceMax = 40,
+        }
+    }
+}

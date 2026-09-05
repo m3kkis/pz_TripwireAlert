@@ -1,0 +1,8 @@
+{
+    "ContextMenu_TripwireAlert_Place": "Place Tripwire",
+    "ContextMenu_TripwireAlert_Arm": "Arm Tripwire",
+    "ContextMenu_TripwireAlert_Disarm": "Disarm Tripwire",
+    "ContextMenu_TripwireAlert_Pickup": "Pick Up Tripwire",
+    "ContextMenu_TripwireAlert_Repair": "Repair Tripwire",
+    "ContextMenu_TripwireAlert_NeedWire": "Requires 1 Wire"
+}

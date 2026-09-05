@@ -1,0 +1,11 @@
+{
+    "Sandbox_TripwireAlert": "Сигнальная растяжка",
+    "Sandbox_TripwireAlert_SoundRadius": "Радиус звона колокольчика",
+    "Sandbox_TripwireAlert_SoundRadius_tooltip": "Как далеко зомби слышат колокольчик, в клетках.",
+    "Sandbox_TripwireAlert_PlayerTrip": "Игроки активируют растяжки",
+    "Sandbox_TripwireAlert_PlayerTrip_tooltip": "Если включено, шаг на взведённую растяжку звонит в колокольчик.",
+    "Sandbox_TripwireAlert_AttractZombies": "Звон колокольчика привлекает зомби",
+    "Sandbox_TripwireAlert_AttractZombies_tooltip": "Если включено, колокольчик притягивает зомби к растяжке. Если выключено, вы всё равно слышите звон, но зомби его игнорируют.",
+    "Sandbox_TripwireAlert_ArmTime": "Время взведения / обезвреживания / подбора (секунды)",
+    "Sandbox_TripwireAlert_ArmTime_tooltip": "Сколько времени занимает взведение, обезвреживание или подбор растяжки."
+}

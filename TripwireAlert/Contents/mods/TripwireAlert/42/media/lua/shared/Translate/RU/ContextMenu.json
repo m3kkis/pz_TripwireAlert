@@ -1,0 +1,8 @@
+{
+    "ContextMenu_TripwireAlert_Place": "Установить растяжку",
+    "ContextMenu_TripwireAlert_Arm": "Взвести растяжку",
+    "ContextMenu_TripwireAlert_Disarm": "Обезвредить растяжку",
+    "ContextMenu_TripwireAlert_Pickup": "Поднять растяжку",
+    "ContextMenu_TripwireAlert_Repair": "Починить растяжку",
+    "ContextMenu_TripwireAlert_NeedWire": "Требуется 1 проволока"
+}

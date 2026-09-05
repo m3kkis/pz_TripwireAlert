@@ -1,0 +1,19 @@
+module TripwireAlert
+{
+    imports
+    {
+        Base
+    }
+
+    item TripwireKit
+    {
+        DisplayCategory = Tool,
+        ItemType = base:normal,
+        Weight = 0.5,
+        Icon = TripwireKit,
+        StaticModel = TripwireKit,
+        WorldStaticModel = TripwireKit,
+        Tooltip = Tooltip_TripwireAlert_Kit,
+        Tags = TripwireKit,
+    }
+}

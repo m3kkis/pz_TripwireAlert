@@ -1,0 +1,22 @@
+module Base
+{
+    craftRecipe MakeTripwireKit
+    {
+        timedAction = Making,
+        time = 50,
+        Tags = InHandCraft;CanBeDoneInDark,
+        category = Miscellaneous,
+        SkillRequired = Trapping:1,
+        xpAward = Trapping:4,
+        inputs
+        {
+            item 1 [Base.Wire],
+            item 1 [Base.AlarmClock2],
+            item 2 [Base.WoodenStick2;Base.TreeBranch2],
+        }
+        outputs
+        {
+            item 1 TripwireAlert.TripwireKit,
+        }
+    }
+}

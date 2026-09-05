@@ -1,0 +1,9 @@
+module Base
+{
+    model TripwireKit
+    {
+        mesh = WorldItems/TrapSnare,
+        texture = WorldItems/TrapSnare,
+        scale = 0.6,
+    }
+}

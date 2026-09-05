@@ -1,0 +1,4 @@
+name=Tripwire Alert
+id=TripwireAlert
+author=_mk$
+description=Craft and place a short tripwire. A bell rings when something walks through, and zombies may hear it.

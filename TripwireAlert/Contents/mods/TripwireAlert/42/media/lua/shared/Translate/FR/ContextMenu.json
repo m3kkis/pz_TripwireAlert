@@ -1,0 +1,8 @@
+{
+    "ContextMenu_TripwireAlert_Place": "Placer le fil piège",
+    "ContextMenu_TripwireAlert_Arm": "Armer le fil piège",
+    "ContextMenu_TripwireAlert_Disarm": "Désarmer le fil piège",
+    "ContextMenu_TripwireAlert_Pickup": "Ramasser le fil piège",
+    "ContextMenu_TripwireAlert_Repair": "Réparer le fil piège",
+    "ContextMenu_TripwireAlert_NeedWire": "Nécessite 1 fil de fer"
+}

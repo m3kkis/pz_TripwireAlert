@@ -1,0 +1,11 @@
+{
+    "Sandbox_TripwireAlert": "Tripwire Alert",
+    "Sandbox_TripwireAlert_SoundRadius": "Bell ring radius",
+    "Sandbox_TripwireAlert_SoundRadius_tooltip": "How far zombies can hear the bell, in tiles.",
+    "Sandbox_TripwireAlert_PlayerTrip": "Players set off tripwires",
+    "Sandbox_TripwireAlert_PlayerTrip_tooltip": "If enabled, walking onto an armed tripwire rings the bell.",
+    "Sandbox_TripwireAlert_AttractZombies": "Bell ring attracts zombies",
+    "Sandbox_TripwireAlert_AttractZombies_tooltip": "If enabled, the bell pulls zombies toward the tripwire. If disabled, you still hear the bell but zombies ignore it.",
+    "Sandbox_TripwireAlert_ArmTime": "Arm / disarm / pickup time (seconds)",
+    "Sandbox_TripwireAlert_ArmTime_tooltip": "How long it takes to arm, disarm, or pick up a tripwire."
+}

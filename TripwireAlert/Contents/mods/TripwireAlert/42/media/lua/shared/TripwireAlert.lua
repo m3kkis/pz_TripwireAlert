@@ -110,6 +110,19 @@ function TripwireAlert.getSandbox()
     }
 end
 
+function TripwireAlert.isPlayerStealth(player)
+    if not player then
+        return false
+    end
+    if player.isSneaking and player:isSneaking() then
+        return true
+    end
+    if player.isCrouching and player:isCrouching() then
+        return true
+    end
+    return false
+end
+
 function TripwireAlert.getActionTime(character)
     if character and character:isTimedActionInstant() then
         return 1

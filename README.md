@@ -1,7 +1,5 @@
 # Project Zomboid mod: TripwireAlert!
 
-
-
 First mod I ever created to a game after having a discussion with my friend and the way his character died in the game by not hearing a zombie crawling up behind him while he was busy doing other stuff. 
 
 Got inspired and created this mod for fun.
@@ -28,6 +26,8 @@ Tripwire Kit (Trapping 1): 1 Wire, 1 Alarm Clock, 2 Wooden Sticks or Tree Branch
 4. Zombies, animals, vehicles and even players can snap it.
 
 After the wire snaps: Repair with 1 Wire, or pick it up to get the kit back. Arm and disarm from the world menu.
+
+***WARNING**: You get a grace period before you can trigger the trip wire. If you want to pass without breaking the line you need to crouch/stealth.*
 
 ### Notes:
 

@@ -26,7 +26,13 @@ local function canBreak(mover)
         return true
     end
     if instanceof(mover, "IsoPlayer") then
-        return TripwireAlert.getSandbox().playerTrip
+        if not TripwireAlert.getSandbox().playerTrip then
+            return false
+        end
+        if TripwireAlert.isPlayerStealth(mover) then
+            return false
+        end
+        return true
     end
     return false
 end

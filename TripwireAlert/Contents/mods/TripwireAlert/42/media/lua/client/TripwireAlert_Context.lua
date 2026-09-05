@@ -102,7 +102,15 @@ local function onFillWorldMenu(playerNum, context, worldobjects, test)
     else
         context:addOption(getText("ContextMenu_TripwireAlert_Arm"), worldobjects, onArmTripwire, object, player)
     end
-    context:addOption(getText("ContextMenu_TripwireAlert_Pickup"), worldobjects, onPickupTripwire, object, player)
+    local pickup = context:addOption(getText("ContextMenu_TripwireAlert_Pickup"), worldobjects, onPickupTripwire, object, player)
+    if md.broken then
+        local tooltip = ISWorldObjectContextMenu.addToolTip()
+        tooltip.description = getText("ContextMenu_TripwireAlert_NeedWire")
+        pickup.toolTip = tooltip
+        if not TripwireAlert.findWire(player) then
+            pickup.notAvailable = true
+        end
+    end
 end
 
 Events.OnFillInventoryObjectContextMenu.Add(onFillInventoryMenu)

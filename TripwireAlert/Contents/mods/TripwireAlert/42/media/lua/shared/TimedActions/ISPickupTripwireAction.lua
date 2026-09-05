@@ -3,7 +3,13 @@ require "TimedActions/ISBaseTimedAction"
 ISPickupTripwireAction = ISBaseTimedAction:derive("ISPickupTripwireAction")
 
 function ISPickupTripwireAction:isValid()
-    return TripwireAlert.isTileValid(self.object)
+    if not TripwireAlert.isTileValid(self.object) then
+        return false
+    end
+    if self.object:getModData().broken and not TripwireAlert.findWire(self.character) then
+        return false
+    end
+    return true
 end
 
 function ISPickupTripwireAction:update()
@@ -25,7 +31,10 @@ function ISPickupTripwireAction:perform()
 end
 
 function ISPickupTripwireAction:complete()
-    if not self:isValid() then
+    if not TripwireAlert.isTileValid(self.object) then
+        return false
+    end
+    if self.object:getModData().broken and not TripwireAlert.consumeWire(self.character) then
         return false
     end
     TripwireAlert.removeGroup(self.object, self.character)

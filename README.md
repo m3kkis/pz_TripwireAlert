@@ -25,7 +25,7 @@ Tripwire Kit (Trapping 1): 1 Wire, 1 Alarm Clock, 2 Wooden Sticks or Tree Branch
 3. The wire is armed when you place it.
 4. Zombies, animals, vehicles and even players can snap it.
 
-After the wire snaps: Repair with 1 Wire, or pick it up to get the kit back. Arm and disarm from the world menu.
+After the wire snaps: Repair with 1 Wire, or spend 1 Wire to pick up the kit. Arm and disarm from the world menu.
 
 ***WARNING**: You get a grace period before you can trigger the trip wire. If you want to pass without breaking the line you need to crouch/stealth.*
 

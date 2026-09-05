@@ -1,5 +1,7 @@
 # Project Zomboid mod: TripwireAlert!
 
+
+
 First mod I ever created to a game after having a discussion with my friend and the way his character died in the game by not hearing a zombie crawling up behind him while he was busy doing other stuff. 
 
 Got inspired and created this mod for fun.
@@ -33,3 +35,9 @@ Build 42.20+ Works in singleplayer and multiplayer.
 
 Workshop ID: 3795603594
 Mod ID: TripwireAlert
+
+![Tripwire Alerts](TripwireAlert/Contents/mods/TripwireAlert/art/workshop/Thumbnail.png)
+
+![Crafting the Tripwire Kit](TripwireAlert/Contents/mods/TripwireAlert/art/workshop/tripwire_crafting.png)
+
+![Sandbox options](TripwireAlert/Contents/mods/TripwireAlert/art/workshop/sandbox_menu.png)

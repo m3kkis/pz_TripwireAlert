@@ -105,6 +105,7 @@ function TripwireAlert.getSandbox()
     return {
         soundRadius = readSandboxOption("TripwireAlert.SoundRadius", 40),
         playerTrip = readSandboxOption("TripwireAlert.PlayerTrip", true) == true,
+        animalTrip = readSandboxOption("TripwireAlert.AnimalTrip", true) == true,
         attractZombies = readSandboxOption("TripwireAlert.AttractZombies", true) == true,
         armTime = readSandboxOption("TripwireAlert.ArmTime", 3),
     }

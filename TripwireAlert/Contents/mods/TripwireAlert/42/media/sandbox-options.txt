@@ -18,6 +18,14 @@ option TripwireAlert.PlayerTrip
     translation = TripwireAlert_PlayerTrip,
 }
 
+option TripwireAlert.AnimalTrip
+{
+    type = boolean,
+    default = true,
+    page = TripwireAlert,
+    translation = TripwireAlert_AnimalTrip,
+}
+
 option TripwireAlert.AttractZombies
 {
     type = boolean,

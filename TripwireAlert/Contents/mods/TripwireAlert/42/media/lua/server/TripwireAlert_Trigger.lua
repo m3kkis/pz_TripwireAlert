@@ -20,7 +20,7 @@ local function canBreak(mover)
         return true
     end
     if instanceof(mover, "IsoAnimal") then
-        return true
+        return TripwireAlert.getSandbox().animalTrip
     end
     if instanceof(mover, "BaseVehicle") then
         return true

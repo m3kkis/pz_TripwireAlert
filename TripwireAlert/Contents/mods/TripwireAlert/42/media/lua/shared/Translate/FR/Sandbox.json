@@ -4,6 +4,8 @@
     "Sandbox_TripwireAlert_SoundRadius_tooltip": "Distance à laquelle les zombies peuvent entendre la clochette, en tuiles.",
     "Sandbox_TripwireAlert_PlayerTrip": "Les joueurs déclenchent les fils pièges",
     "Sandbox_TripwireAlert_PlayerTrip_tooltip": "Si activé, marcher sur un fil piège armé fait sonner la clochette. Accroupissez-vous / restez furtif pour passer sans casser le fil.",
+    "Sandbox_TripwireAlert_AnimalTrip": "Les animaux déclenchent les fils pièges",
+    "Sandbox_TripwireAlert_AnimalTrip_tooltip": "Si activé, un animal qui marche sur un fil piège armé fait sonner la clochette. Désactivez cette option si le bétail ou la faune le déclenchent trop souvent.",
     "Sandbox_TripwireAlert_AttractZombies": "La clochette attire les zombies",
     "Sandbox_TripwireAlert_AttractZombies_tooltip": "Si activé, la clochette attire les zombies vers le fil piège. Si désactivé, vous entendez toujours la clochette, mais les zombies l'ignorent.",
     "Sandbox_TripwireAlert_ArmTime": "Temps pour armer / désarmer / ramasser (secondes)",

@@ -2,6 +2,8 @@
     "Sandbox_TripwireAlert": "Tripwire Alert",
     "Sandbox_TripwireAlert_SoundRadius": "Bell ring radius",
     "Sandbox_TripwireAlert_SoundRadius_tooltip": "How far zombies can hear the bell, in tiles.",
+    "Sandbox_TripwireAlert_BellVolume": "Bell volume",
+    "Sandbox_TripwireAlert_BellVolume_tooltip": "How loud the bell is for you, from 0 (silent) to 100 (full).",
     "Sandbox_TripwireAlert_PlayerTrip": "Players set off tripwires",
     "Sandbox_TripwireAlert_PlayerTrip_tooltip": "If enabled, walking onto an armed tripwire rings the bell. Crouch/stealth to pass without breaking the line.",
     "Sandbox_TripwireAlert_AnimalTrip": "Animals set off tripwires",

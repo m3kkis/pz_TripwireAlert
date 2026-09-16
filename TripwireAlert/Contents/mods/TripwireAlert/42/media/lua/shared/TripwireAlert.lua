@@ -141,6 +141,7 @@ end
 function TripwireAlert.getSandbox()
     return {
         soundRadius = readSandboxOption("TripwireAlert.SoundRadius", 40),
+        bellVolume = readSandboxOption("TripwireAlert.BellVolume", 100),
         playerTrip = readSandboxOption("TripwireAlert.PlayerTrip", true) == true,
         animalTrip = readSandboxOption("TripwireAlert.AnimalTrip", true) == true,
         attractZombies = readSandboxOption("TripwireAlert.AttractZombies", true) == true,
@@ -247,10 +248,25 @@ function TripwireAlert.playBell(square)
     if not square then
         return
     end
+    local volume = (TripwireAlert.getSandbox().bellVolume or 100) / 100
+    if volume <= 0 then
+        return
+    end
+    local world = getWorld()
+    if world and world.getFreeEmitter then
+        local emitter = world:getFreeEmitter(square:getX() + 0.5, square:getY() + 0.5, square:getZ())
+        if emitter then
+            local handle = emitter:playSound("TripwireBell")
+            if handle and emitter.setVolume then
+                emitter:setVolume(handle, volume)
+            end
+            return
+        end
+    end
     if isServer() then
         playServerSound("TripwireBell", square)
     else
-        square:playSound("TripwireBell", true)
+        square:playSound("TripwireBell")
     end
 end
 

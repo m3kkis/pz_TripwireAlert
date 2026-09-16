@@ -2,6 +2,8 @@
     "Sandbox_TripwireAlert": "Сигнальная растяжка",
     "Sandbox_TripwireAlert_SoundRadius": "Радиус звона колокольчика",
     "Sandbox_TripwireAlert_SoundRadius_tooltip": "Как далеко зомби слышат колокольчик, в клетках.",
+    "Sandbox_TripwireAlert_BellVolume": "Громкость колокольчика",
+    "Sandbox_TripwireAlert_BellVolume_tooltip": "Насколько громко колокольчик для вас, от 0 (тихо) до 100 (максимум).",
     "Sandbox_TripwireAlert_PlayerTrip": "Игроки активируют растяжки",
     "Sandbox_TripwireAlert_PlayerTrip_tooltip": "Если включено, шаг на взведённую растяжку звонит в колокольчик. Присядьте / двигайтесь скрытно, чтобы пройти, не порвав леску.",
     "Sandbox_TripwireAlert_AnimalTrip": "Животные активируют растяжки",

@@ -31,6 +31,15 @@ After the wire snaps: Repair with 1 Wire, or spend 1 Wire to pick up the kit. Ar
 
 ***WARNING**: You get a grace period before you can trigger the trip wire. If you want to pass without breaking the line you need to crouch/stealth.*
 
+### Sandbox options:
+
+- Bell ring radius: how far zombies can hear the bell.
+- Bell volume: how loud the bell is for you (0 silent, 100 full).
+- Players set off tripwires: walking onto an armed wire rings it. Crouch/stealth to pass without breaking the line.
+- Animals set off tripwires: turn off if livestock or wildlife keep setting it off.
+- Bell ring attracts zombies: if off, you still hear the bell but zombies ignore it.
+- Arm / disarm / pickup time.
+
 ### Notes:
 
 Build 42.20+ Works in singleplayer, multiplayer is not tested yet but should work

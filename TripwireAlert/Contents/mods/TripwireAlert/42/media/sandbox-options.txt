@@ -10,6 +10,16 @@ option TripwireAlert.SoundRadius
     translation = TripwireAlert_SoundRadius,
 }
 
+option TripwireAlert.BellVolume
+{
+    type = integer,
+    default = 100,
+    min = 0,
+    max = 100,
+    page = TripwireAlert,
+    translation = TripwireAlert_BellVolume,
+}
+
 option TripwireAlert.PlayerTrip
 {
     type = boolean,

@@ -1,4 +1,4 @@
-local KIT_TYPE = "TripwireAlert.TripwireKit"
+local KIT_TYPE = "Base.TripwireKit"
 
 local function getClickedItem(items)
     local entry = items[1]

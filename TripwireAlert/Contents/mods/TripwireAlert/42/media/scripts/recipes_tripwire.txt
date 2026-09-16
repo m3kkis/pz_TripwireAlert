@@ -7,16 +7,38 @@ module Base
         Tags = InHandCraft;CanBeDoneInDark,
         category = Miscellaneous,
         SkillRequired = Trapping:1,
+        AutoLearnAny = Trapping:1,
         xpAward = Trapping:4,
         inputs
         {
             item 1 [Base.Wire],
             item 1 [Base.AlarmClock2],
-            item 2 [Base.WoodenStick2;Base.TreeBranch2],
+            item 1 [Base.WoodenStick2;Base.TreeBranch2],
         }
         outputs
         {
-            item 1 TripwireAlert.TripwireKit,
+            item 1 Base.TripwireKit,
+        }
+    }
+
+    craftRecipe MakeTripwireKitBell
+    {
+        timedAction = Making,
+        time = 50,
+        Tags = InHandCraft;CanBeDoneInDark,
+        category = Miscellaneous,
+        SkillRequired = Trapping:1,
+        AutoLearnAny = Trapping:1,
+        xpAward = Trapping:4,
+        inputs
+        {
+            item 1 [Base.Wire],
+            item 1 [Base.Bell],
+            item 2 [Base.LongStick],
+        }
+        outputs
+        {
+            item 1 Base.TripwireKit,
         }
     }
 }

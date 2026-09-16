@@ -35,6 +35,43 @@ TripwireAlert.BrokenOverlays = {
     nsSingle = "media/textures/tripwire/tripwire_end_ns.png",
 }
 
+function TripwireAlert.ensureSprite(path)
+    if not path then
+        return nil
+    end
+    local mgr = IsoSpriteManager and IsoSpriteManager.instance
+    if mgr then
+        local existing = mgr:getSprite(path)
+        if existing then
+            return existing
+        end
+        local ok, added = pcall(function()
+            return mgr:AddSprite(path)
+        end)
+        if ok and added then
+            return added
+        end
+    end
+    local sprite = IsoSprite.new()
+    sprite:LoadSingleTexture(path)
+    if sprite.setName then
+        sprite:setName(path)
+    end
+    return sprite
+end
+
+function TripwireAlert.preloadSprites()
+    for _, path in pairs(TripwireAlert.Sprites) do
+        TripwireAlert.ensureSprite(path)
+    end
+    for _, path in pairs(TripwireAlert.BrokenSprites) do
+        TripwireAlert.ensureSprite(path)
+    end
+    for _, path in pairs(TripwireAlert.Overlays) do
+        TripwireAlert.ensureSprite(path)
+    end
+end
+
 function TripwireAlert.getTileRole(line, index)
     local pos = line[index]
     if not pos then
@@ -201,7 +238,7 @@ function TripwireAlert.addKit(character)
     if not character then
         return nil
     end
-    local item = character:getInventory():AddItem("TripwireAlert.TripwireKit")
+    local item = character:getInventory():AddItem("Base.TripwireKit")
     sendAddItemToContainer(character:getInventory(), item)
     return item
 end
@@ -246,13 +283,14 @@ function TripwireAlert.createTile(x, y, z, north, spriteRole, tripwireId, lineTi
     if not square then
         return nil
     end
-    local sprite = TripwireAlert.Sprites[spriteRole]
-    if not sprite then
+    local spriteName = TripwireAlert.Sprites[spriteRole]
+    if not spriteName then
         return nil
     end
+    TripwireAlert.ensureSprite(spriteName)
 
     local info = building or {}
-    local obj = IsoThumpable.new(cell, square, sprite, north, info)
+    local obj = IsoThumpable.new(cell, square, spriteName, north, info)
     if buildUtil and building then
         buildUtil.setInfo(obj, building)
     end
@@ -269,7 +307,7 @@ function TripwireAlert.createTile(x, y, z, north, spriteRole, tripwireId, lineTi
     md.spriteRole = spriteRole
     md.lineTiles = lineTiles
 
-    TripwireAlert.setOverlay(obj, spriteRole, false)
+    TripwireAlert.applyVisual(obj, spriteRole, false)
     square:AddSpecialObject(obj)
     obj:transmitCompleteItemToClients()
     TripwireAlert.rememberTile(obj)
@@ -462,7 +500,12 @@ function TripwireAlert.applySprite(obj, spriteName)
     if not obj or not spriteName then
         return
     end
-    obj:setSpriteFromName(spriteName)
+    local sprite = TripwireAlert.ensureSprite(spriteName)
+    if sprite then
+        obj:setSprite(sprite)
+    else
+        obj:setSpriteFromName(spriteName)
+    end
     if not isClient() then
         obj:transmitUpdatedSpriteToClients()
     end
@@ -484,10 +527,27 @@ function TripwireAlert.applyVisual(obj, role, broken)
     if not obj or not role then
         return
     end
+    if obj.setAlpha then
+        obj:setAlpha(1)
+    end
+    if broken and (role == "ewMid" or role == "nsMid") then
+        if not TripwireAlert._blankSprite then
+            TripwireAlert._blankSprite = IsoSprite.new()
+        end
+        obj:setSprite(TripwireAlert._blankSprite)
+        obj:setOverlaySprite(nil)
+        if obj.setAlpha then
+            obj:setAlpha(0)
+        end
+        if not isClient() then
+            obj:transmitUpdatedSpriteToClients()
+        end
+        return
+    end
     local sprites = broken and TripwireAlert.BrokenSprites or TripwireAlert.Sprites
-    local sprite = sprites[role]
-    if sprite then
-        obj:setSpriteFromName(sprite)
+    local spriteName = sprites[role] or (not broken and TripwireAlert.Sprites[role])
+    if spriteName then
+        TripwireAlert.applySprite(obj, spriteName)
     end
     TripwireAlert.setOverlay(obj, role, broken)
     if not isClient() then
@@ -518,19 +578,12 @@ function TripwireAlert.breakGroup(obj)
         local md = tile:getModData()
         TripwireAlert.unregister(tile)
         TripwireAlert.unwatch(tile)
-        local role = md.spriteRole
-        if role == "ewMid" or role == "nsMid" then
-            local square = tile:getSquare()
-            if square then
-                square:transmitRemoveItemFromSquare(tile)
-            end
-        else
-            md.broken = true
-            md.lineTiles = layout
-            TripwireAlert.applyVisual(tile, role, true)
-            TripwireAlert.syncTile(tile)
-            table.insert(keep, tile)
-        end
+        md.broken = true
+        md.armed = false
+        md.lineTiles = layout
+        TripwireAlert.applyVisual(tile, md.spriteRole, true)
+        TripwireAlert.syncTile(tile)
+        table.insert(keep, tile)
     end
     if id then
         TripwireAlert.groups[id] = nil
@@ -626,3 +679,6 @@ function TripwireAlert.filterPlaceableLine(line)
     end
     return out
 end
+
+Events.OnGameStart.Add(TripwireAlert.preloadSprites)
+Events.OnInitWorld.Add(TripwireAlert.preloadSprites)

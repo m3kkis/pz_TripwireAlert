@@ -16,7 +16,9 @@ Place a bell tripwire and when something walks through, a bell rings and alerts 
 
 ### Crafting:
 
-Tripwire Kit (Trapping 1): 1 Wire, 1 Alarm Clock, 2 Wooden Sticks or Tree Branches. No tools.
+Tripwire Kit (Trapping 1), either:
+- 1 Wire, 1 Alarm Clock, 1 Wooden Stick or Tree Branch. No tools.
+- 1 Wire, 1 Bell, 2 Long Sticks. No tools.
 
 ### How it works:
 

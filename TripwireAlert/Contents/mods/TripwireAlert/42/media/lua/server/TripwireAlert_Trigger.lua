@@ -95,12 +95,9 @@ local function onLoadSquare(square)
     end
     TripwireAlert.rememberTile(obj)
     local md = obj:getModData()
+    TripwireAlert.applyVisual(obj, md.spriteRole, md.broken == true)
     if md.broken then
-        TripwireAlert.applyVisual(obj, md.spriteRole, true)
         return
-    end
-    if md.spriteRole == "ewSingle" or md.spriteRole == "nsSingle" then
-        TripwireAlert.setOverlay(obj, md.spriteRole, false)
     end
     if not TripwireAlert.isAuthority() then
         return

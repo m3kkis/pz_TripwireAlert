@@ -6,7 +6,7 @@ local function triggerTripwire(square, mover)
 
     if obj:getModData().armed then
         local settings = TripwireAlert.getSandbox()
-        TripwireAlert.playBell(square)
+        pcall(TripwireAlert.playBell, square)
         if settings.attractZombies then
             addSound(obj, square:getX(), square:getY(), square:getZ(), settings.soundRadius, settings.soundRadius)
         end
@@ -85,29 +85,4 @@ local function onTick()
     end
 end
 
-local function onLoadSquare(square)
-    if not square or not getCell() then
-        return
-    end
-    local obj = TripwireAlert.getTripwireOnSquare(square)
-    if not obj then
-        return
-    end
-    TripwireAlert.rememberTile(obj)
-    local md = obj:getModData()
-    TripwireAlert.applyVisual(obj, md.spriteRole, md.broken == true)
-    if md.broken then
-        return
-    end
-    if not TripwireAlert.isAuthority() then
-        return
-    end
-    if md.armed then
-        TripwireAlert.register(obj, 0)
-    else
-        TripwireAlert.watch(obj, 0)
-    end
-end
-
 Events.OnTick.Add(onTick)
-Events.LoadGridsquare.Add(onLoadSquare)

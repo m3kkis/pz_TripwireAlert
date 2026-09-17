@@ -138,15 +138,27 @@ local function readSandboxOption(name, default)
     return default
 end
 
+local function readIntOption(name, default, min, max)
+    local n = tonumber(readSandboxOption(name, default))
+    if n == nil then
+        return default
+    end
+    n = math.floor(n)
+    if n < min or n > max then
+        return default
+    end
+    return n
+end
+
 function TripwireAlert.getSandbox()
     return {
-        soundRadius = readSandboxOption("TripwireAlert.SoundRadius", 40),
-        playerHearRadius = readSandboxOption("TripwireAlert.PlayerHearRadius", 40),
-        bellVolume = readSandboxOption("TripwireAlert.BellVolume", 100),
+        soundRadius = readIntOption("TripwireAlert.SoundRadius", 40, 5, 150),
+        playerHearRadius = readIntOption("TripwireAlert.PlayerHearRadius", 40, 1, 150),
+        bellVolume = readIntOption("TripwireAlert.BellVolume", 100, 0, 100),
         playerTrip = readSandboxOption("TripwireAlert.PlayerTrip", true) == true,
         animalTrip = readSandboxOption("TripwireAlert.AnimalTrip", true) == true,
         attractZombies = readSandboxOption("TripwireAlert.AttractZombies", true) == true,
-        armTime = readSandboxOption("TripwireAlert.ArmTime", 3),
+        armTime = readIntOption("TripwireAlert.ArmTime", 3, 1, 10),
     }
 end
 
@@ -245,6 +257,42 @@ function TripwireAlert.addKit(character)
     return item
 end
 
+function TripwireAlert.playBellLocal(square, volume, hearRadius)
+    if not square then
+        return
+    end
+    volume = tonumber(volume) or 1
+    hearRadius = tonumber(hearRadius) or 40
+    if volume <= 0 or hearRadius <= 0 then
+        return
+    end
+    local sm = getSoundManager()
+    if sm and sm.PlayWorldSound then
+        local ok = pcall(function()
+            sm:PlayWorldSound("TripwireBell", square, 0, hearRadius, volume, true)
+        end)
+        if ok then
+            return
+        end
+    end
+    local world = getWorld()
+    if world and world.getFreeEmitter then
+        local emitter = world:getFreeEmitter(square:getX() + 0.5, square:getY() + 0.5, square:getZ())
+        if emitter then
+            local handle = emitter:playSound("TripwireBell")
+            if handle and emitter.setVolume then
+                pcall(function()
+                    emitter:setVolume(handle, volume)
+                end)
+            end
+            return
+        end
+    end
+    pcall(function()
+        square:playSound("TripwireBell")
+    end)
+end
+
 function TripwireAlert.playBell(square)
     if not square then
         return
@@ -255,35 +303,22 @@ function TripwireAlert.playBell(square)
     if volume <= 0 or hearRadius <= 0 then
         return
     end
-    if GameSounds then
-        local gs = GameSounds.getSound("TripwireBell")
-        if gs and gs.getRandomClip then
-            local clip = gs:getRandomClip()
-            if clip then
-                clip.distanceMax = hearRadius
-            end
-        end
-    end
-    local sm = getSoundManager()
-    if sm and sm.PlayWorldSound then
-        sm:PlayWorldSound("TripwireBell", square, 0, hearRadius, volume, true)
-        return
-    end
-    local world = getWorld()
-    if world and world.getFreeEmitter then
-        local emitter = world:getFreeEmitter(square:getX() + 0.5, square:getY() + 0.5, square:getZ())
-        if emitter then
-            local handle = emitter:playSound("TripwireBell")
-            if handle and emitter.setVolume then
-                emitter:setVolume(handle, volume)
-            end
-            return
-        end
-    end
     if isServer() then
-        playServerSound("TripwireBell", square)
-    else
-        square:playSound("TripwireBell")
+        local ok = pcall(function()
+            sendServerCommand("TripwireAlert", "PlayBell", {
+                x = square:getX(),
+                y = square:getY(),
+                z = square:getZ(),
+                volume = settings.bellVolume or 100,
+                hearRadius = hearRadius,
+            })
+        end)
+        if not ok then
+            pcall(playServerSound, "TripwireBell", square)
+        end
+    end
+    if getPlayer() then
+        TripwireAlert.playBellLocal(square, volume, hearRadius)
     end
 end
 
@@ -533,11 +568,14 @@ function TripwireAlert.applySprite(obj, spriteName)
     if not obj or not spriteName then
         return
     end
-    local sprite = TripwireAlert.ensureSprite(spriteName)
-    if sprite then
-        obj:setSprite(sprite)
-    else
+    TripwireAlert.ensureSprite(spriteName)
+    if obj.setSpriteFromName then
         obj:setSpriteFromName(spriteName)
+    else
+        local sprite = TripwireAlert.ensureSprite(spriteName)
+        if sprite then
+            obj:setSprite(sprite)
+        end
     end
     if not isClient() then
         obj:transmitUpdatedSpriteToClients()
@@ -713,5 +751,48 @@ function TripwireAlert.filterPlaceableLine(line)
     return out
 end
 
+local function onLoadSquare(square)
+    if not square or not getCell() then
+        return
+    end
+    local obj = TripwireAlert.getTripwireOnSquare(square)
+    if not obj then
+        return
+    end
+    TripwireAlert.rememberTile(obj)
+    local md = obj:getModData()
+    TripwireAlert.applyVisual(obj, md.spriteRole, md.broken == true)
+    if md.broken then
+        return
+    end
+    if not TripwireAlert.isAuthority() then
+        return
+    end
+    if md.armed then
+        TripwireAlert.register(obj, 0)
+    else
+        TripwireAlert.watch(obj, 0)
+    end
+end
+
+local function onServerCommand(module, command, args)
+    if not isClient() then
+        return
+    end
+    if module ~= "TripwireAlert" or command ~= "PlayBell" or not args then
+        return
+    end
+    local cell = getCell()
+    if not cell then
+        return
+    end
+    local square = cell:getGridSquare(tonumber(args.x), tonumber(args.y), tonumber(args.z))
+    local volume = (tonumber(args.volume) or 100) / 100
+    local hearRadius = tonumber(args.hearRadius) or 40
+    TripwireAlert.playBellLocal(square, volume, hearRadius)
+end
+
 Events.OnGameStart.Add(TripwireAlert.preloadSprites)
 Events.OnInitWorld.Add(TripwireAlert.preloadSprites)
+Events.LoadGridsquare.Add(onLoadSquare)
+Events.OnServerCommand.Add(onServerCommand)

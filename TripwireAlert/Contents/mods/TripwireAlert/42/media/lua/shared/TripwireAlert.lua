@@ -141,6 +141,7 @@ end
 function TripwireAlert.getSandbox()
     return {
         soundRadius = readSandboxOption("TripwireAlert.SoundRadius", 40),
+        playerHearRadius = readSandboxOption("TripwireAlert.PlayerHearRadius", 40),
         bellVolume = readSandboxOption("TripwireAlert.BellVolume", 100),
         playerTrip = readSandboxOption("TripwireAlert.PlayerTrip", true) == true,
         animalTrip = readSandboxOption("TripwireAlert.AnimalTrip", true) == true,
@@ -248,8 +249,24 @@ function TripwireAlert.playBell(square)
     if not square then
         return
     end
-    local volume = (TripwireAlert.getSandbox().bellVolume or 100) / 100
-    if volume <= 0 then
+    local settings = TripwireAlert.getSandbox()
+    local volume = (settings.bellVolume or 100) / 100
+    local hearRadius = settings.playerHearRadius or 40
+    if volume <= 0 or hearRadius <= 0 then
+        return
+    end
+    if GameSounds then
+        local gs = GameSounds.getSound("TripwireBell")
+        if gs and gs.getRandomClip then
+            local clip = gs:getRandomClip()
+            if clip then
+                clip.distanceMax = hearRadius
+            end
+        end
+    end
+    local sm = getSoundManager()
+    if sm and sm.PlayWorldSound then
+        sm:PlayWorldSound("TripwireBell", square, 0, hearRadius, volume, true)
         return
     end
     local world = getWorld()

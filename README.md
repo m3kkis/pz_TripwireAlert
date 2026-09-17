@@ -16,9 +16,10 @@ Place a bell tripwire and when something walks through, a bell rings and alerts 
 
 ### Crafting:
 
-Tripwire Kit (Trapping 1), either:
-- 1 Wire, 1 Alarm Clock, 1 Wooden Stick or Tree Branch. No tools.
-- 1 Wire, 1 Bell, 2 Long Sticks. No tools.
+Tripwire Kit (Trapping 1). No tools.
+- 1 Wire
+- 1 Alarm Clock or Bell
+- 1 Wooden Rod, or 1 Long Stick, or 2 Tree Branches
 
 ### How it works:
 
@@ -33,8 +34,9 @@ After the wire snaps: Repair with 1 Wire, or spend 1 Wire to pick up the kit. Ar
 
 ### Sandbox options:
 
-- Bell ring radius: how far zombies can hear the bell.
-- Bell volume: how loud the bell is for you (0 silent, 100 full).
+- Zombie hear radius (5-150, default 40): how far zombies can hear the bell. Does not change how far you hear it.
+- Player hear radius (5-150, default 40): how far away you can hear the bell. Independent from the zombie radius.
+- Bell volume (0-100, default 100): how loud the bell is for you.
 - Players set off tripwires: walking onto an armed wire rings it. Crouch/stealth to pass without breaking the line.
 - Animals set off tripwires: turn off if livestock or wildlife keep setting it off.
 - Bell ring attracts zombies: if off, you still hear the bell but zombies ignore it.

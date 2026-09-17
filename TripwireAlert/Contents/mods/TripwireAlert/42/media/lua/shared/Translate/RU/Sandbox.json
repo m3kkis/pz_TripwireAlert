@@ -1,7 +1,9 @@
 {
     "Sandbox_TripwireAlert": "Сигнальная растяжка",
-    "Sandbox_TripwireAlert_SoundRadius": "Радиус звона колокольчика",
-    "Sandbox_TripwireAlert_SoundRadius_tooltip": "Как далеко зомби слышат колокольчик, в клетках.",
+    "Sandbox_TripwireAlert_SoundRadius": "Радиус слуха зомби",
+    "Sandbox_TripwireAlert_SoundRadius_tooltip": "Как далеко зомби слышат колокольчик, в клетках. Не влияет на то, что слышите вы.",
+    "Sandbox_TripwireAlert_PlayerHearRadius": "Радиус слуха игрока",
+    "Sandbox_TripwireAlert_PlayerHearRadius_tooltip": "Как далеко вы слышите колокольчик, в клетках. Зомби используют радиус слуха зомби.",
     "Sandbox_TripwireAlert_BellVolume": "Громкость колокольчика",
     "Sandbox_TripwireAlert_BellVolume_tooltip": "Насколько громко колокольчик для вас, от 0 (тихо) до 100 (максимум).",
     "Sandbox_TripwireAlert_PlayerTrip": "Игроки активируют растяжки",

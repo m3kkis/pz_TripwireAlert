@@ -6,7 +6,7 @@ module TripwireAlert
         clip
         {
             file = media/sound/TripwireBell.ogg,
-            distanceMax = 40,
+            distanceMax = 150,
         }
     }
 }

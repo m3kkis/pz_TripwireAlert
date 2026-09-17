@@ -1,7 +1,9 @@
 {
     "Sandbox_TripwireAlert": "Alerte fil piège",
-    "Sandbox_TripwireAlert_SoundRadius": "Portée de la clochette",
-    "Sandbox_TripwireAlert_SoundRadius_tooltip": "Distance à laquelle les zombies peuvent entendre la clochette, en tuiles.",
+    "Sandbox_TripwireAlert_SoundRadius": "Portée pour les zombies",
+    "Sandbox_TripwireAlert_SoundRadius_tooltip": "Distance à laquelle les zombies peuvent entendre la clochette, en tuiles. Ne change pas ce que vous entendez.",
+    "Sandbox_TripwireAlert_PlayerHearRadius": "Portée pour le joueur",
+    "Sandbox_TripwireAlert_PlayerHearRadius_tooltip": "Distance à laquelle vous pouvez entendre la clochette, en tuiles. Les zombies utilisent la portée pour les zombies.",
     "Sandbox_TripwireAlert_BellVolume": "Volume de la clochette",
     "Sandbox_TripwireAlert_BellVolume_tooltip": "Volume de la clochette pour vous, de 0 (silence) à 100 (maximum).",
     "Sandbox_TripwireAlert_PlayerTrip": "Les joueurs déclenchent les fils pièges",
